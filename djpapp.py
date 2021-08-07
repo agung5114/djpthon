@@ -60,8 +60,12 @@ def main():
                 st.title('Permohonan Banding Diterima Seluruhnya')
     
     elif choice == "VATFraud":
+        url = 'https://drive.google.com/file/d/1Mj7rUHoOe_eZUZQID9z_-rdwug63D7fl/view?usp=sharing'
+        path = 'https://drive.google.com/uc?export=download&id='+url.split('/')[-2]
+#         df = pd.read_csv(path)
         def draw_graph(npwp):
-            A, tree,G,wp = pickle.load(open("vat_network_all.p","rb"))
+#             A, tree,G,wp = pickle.load(open("vat_network_all.p","rb"))
+            A, tree,G,wp = pickle.load(open(path,"rb"))
             db_wp = pickle.load(open("d_wp.p","rb"))
             idx = db_wp[db_wp.npwp == npwp].index.values[0]
             wp_awal = db_wp[db_wp.index.isin([idx])].npwp.values 
