@@ -60,8 +60,9 @@ def main():
                 st.title('Permohonan Banding Diterima Seluruhnya')
     
     elif choice == "VATFraud":
-        url = 'https://drive.google.com/file/d/1Mj7rUHoOe_eZUZQID9z_-rdwug63D7fl/view?usp=sharing'
-        path = 'https://drive.google.com/uc?export=download&id='+url.split('/')[-2]
+#         url = 'https://drive.google.com/file/d/1Mj7rUHoOe_eZUZQID9z_-rdwug63D7fl/view?usp=sharing'
+#         path = 'https://drive.google.com/uc?export=download&id='+url.split('/')[-2]
+        path = 'https://drive.google.com/u/0/uc?export=download&confirm=Xd_-&id=1Mj7rUHoOe_eZUZQID9z_-rdwug63D7fl'
 #         df = pd.read_csv(path)
         def draw_graph(npwp):
 #             A, tree,G,wp = pickle.load(open("vat_network_all.p","rb"))
