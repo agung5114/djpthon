@@ -3,7 +3,12 @@ import pandas as pd
 import numpy as np
 import plotly_express as px
 # from PIL import Image
-
+import streamlit.components.v1 as components
+# import matplotlib.pyplot as plt
+import pickle
+import networkx as nx
+from pyvis.network import Network
+from pyvis import network as net
 # load model 
 import joblib
 
@@ -55,7 +60,51 @@ def main():
                 st.title('Permohonan Banding Diterima Seluruhnya')
     
     elif choice == "VATFraud":
-        st.empty()
+        def draw_graph(npwp):
+            A, tree,G,wp = pickle.load(open("vat_network_all.p","rb"))
+            db_wp = pickle.load(open("d_wp.p","rb"))
+            idx = db_wp[db_wp.npwp == npwp].index.values[0]
+            wp_awal = db_wp[db_wp.index.isin([idx])].npwp.values 
+            idx = tree.query(A[idx,:].toarray(), k=10)[1][0]
+            idx = wp[wp.index.isin(idx)].npwp.values
+            nodesList = []
+            for item in idx :
+                for each in nx.shortest_path(G,wp_awal[0],item):
+                    nodesList.append(each)
+            # nodes_between_set = {node for path in gen for node in path}
+            # nodes_between_set
+            H = G.subgraph(set(nodesList))
+            # make a pyvis network
+            pyvis_graph = net.Network(notebook=False, directed=True)
+            # for each node and its attributes in the networkx graph
+            for node,node_attrs in H.nodes(data=True):
+                node_attrs['size'] = 5
+                if node in idx : 
+                    node_attrs['size'] = 10
+                    node_attrs['color'] = 'green'
+                if node == wp_awal : 
+                    node_attrs['size'] = 20
+                    node_attrs['color'] = 'red'
+
+                pyvis_graph.add_node(str(node),**node_attrs)
+            # for each edge and its attributes in the networkx graph
+            for source,target,edge_attrs in H.edges(data=True):
+            # edge_attrs['value'] = 0.5
+                edge_attrs['arrowStrikethrough'] = True
+                # add the edge
+                pyvis_graph.add_edge(str(source),str(target),**edge_attrs)
+            # return and also save
+            hidden_net = []
+            for item in H.nodes:
+                if item not in idx :hidden_net.append(item)
+            return pyvis_graph.show('graph.html'),hidden_net,idx
+        npwp = st.text_input('Masukkan_NPWP:')
+        if st.button('Draw_graph'):
+            st.write(draw_graph(npwp))
+            HtmlFile = open("graph.html", 'r', encoding='utf-8')
+            source_code = HtmlFile.read() 
+            # print(source_code)
+            components.html(source_code,height = 400,width=600)
 
 
 if __name__=='__main__':
