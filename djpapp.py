@@ -164,8 +164,8 @@ def main():
                 components.html(source_code,height = 550,width=650)
             with c2:
                 glist = gen_list(npwp)
-                green = glist[0]
-                blue = glist[1]
+                blue = glist[0]
+                green = glist[1]
                 st.write(f'green: {green}')
                 st.write(f'blue: {blue}')
 
