@@ -153,11 +153,13 @@ def main():
             for item in H.nodes:
                 if item not in idx :hidden_net.append(item)
             return hidden_net,idx
+        wpsample = [565148728502555,302335091102555,569092136088555]
+        st.write(f'Sample WP: {wpsample}')
         npwp = st.text_input('Masukkan_NPWP:')
         if st.button('Draw_graph'):
             c1,c2 = st.beta_columns((1,1))
             with c1:
-                # st.write(draw_graph(npwp))
+                draw_graph(npwp)
                 HtmlFile = open("graph.html", 'r', encoding='utf-8')
                 source_code = HtmlFile.read() 
                 # print(source_code)
