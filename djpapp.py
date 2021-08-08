@@ -160,7 +160,7 @@ def main():
 #                 draw_graph(npwp)
                 HtmlFile = open("graph.html", 'r', encoding='utf-8')
                 source_code = HtmlFile.read() 
-                # print(source_code)
+                print(source_code)
                 components.html(source_code,height = 550,width=650)
             with c2:
                 glist = gen_list(npwp)
