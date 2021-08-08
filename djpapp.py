@@ -24,13 +24,13 @@ def decompress_pickle(file):
 
 def main():
     """App by Gaspol"""
-    st.title("MachineLearning Analytics App")
     menu = ["Verdict","VATFraud"]
     
     choice = st.sidebar.selectbox("Select Menu", menu)
         
     if choice == "Verdict":
         # st.subheader("Prediction from Model")
+#         st.title("MachineLearning Analytics App")
         st.subheader("Verdict Prediction with Machine Learning")
         # iris= Image.open('iris.png')
 
@@ -68,10 +68,7 @@ def main():
                 st.title('Permohonan Banding Diterima Seluruhnya')
     
     elif choice == "VATFraud":
-#         url = 'https://drive.google.com/file/d/1Mj7rUHoOe_eZUZQID9z_-rdwug63D7fl/view?usp=sharing'
-#         path = 'https://drive.google.com/uc?export=download&id='+url.split('/')[-2]
-        path = 'https://drive.google.com/u/0/uc?export=download&confirm=Xd_-&id=1Mj7rUHoOe_eZUZQID9z_-rdwug63D7fl'
-#         df = pd.read_csv(path)
+        st.title("VAT Fraud Network Analysis")
         def draw_graph(npwp):
             A = decompress_pickle('A.pbz2')
             tree = decompress_pickle('tree.pbz2')
