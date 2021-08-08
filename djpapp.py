@@ -157,7 +157,7 @@ def main():
         if st.button('Draw_graph'):
             c1,c2 = st.beta_columns((1,1))
             with c1:
-                draw_graph(npwp)
+#                 draw_graph(npwp)
                 HtmlFile = open("graph.html", 'r', encoding='utf-8')
                 source_code = HtmlFile.read() 
                 # print(source_code)
