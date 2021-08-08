@@ -74,7 +74,6 @@ def main():
             tree = decompress_pickle('tree.pbz2')
             G = decompress_pickle('G.pbz2')
             wp = decompress_pickle('wp.pbz2')
-#             A, tree,G,wp = pickle.load(open(path,"rb"))
             db_wp = pickle.load(open("d_wp.p","rb"))
             idx = db_wp[db_wp.npwp == npwp].index.values[0]
             wp_awal = db_wp[db_wp.index.isin([idx])].npwp.values 
@@ -116,7 +115,6 @@ def main():
             tree = decompress_pickle('tree.pbz2')
             G = decompress_pickle('G.pbz2')
             wp = decompress_pickle('wp.pbz2')
-            # A, tree,G,wp = pickle.load(open("vat_network_all.p","rb"))
             db_wp = pickle.load(open("d_wp.p","rb"))
             idx = db_wp[db_wp.npwp == npwp].index.values[0]
             wp_awal = db_wp[db_wp.index.isin([idx])].npwp.values 
