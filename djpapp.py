@@ -109,7 +109,7 @@ def main():
             hidden_net = []
             for item in H.nodes:
                 if item not in idx :hidden_net.append(item)
-            return pyvis_graph.show('graph.html')
+            return pyvis_graph.show('/tmp/graph.html')
         def gen_list(npwp):
             A = decompress_pickle('A.pbz2')
             tree = decompress_pickle('tree.pbz2')
@@ -157,12 +157,12 @@ def main():
         if st.button('Draw_graph'):
             c1,c2 = st.beta_columns((1,1))
             with c1:
-# #                 draw_graph(npwp)
-#                 HtmlFile = open("graph.html", 'r', encoding='utf-8')
-#                 source_code = HtmlFile.read() 
-# #                 print(source_code)
-#                 components.html(source_code,height = 550,width=650)
-                components.html(draw_graph(npwp),height = 550,width=650)
+                draw_graph(npwp)
+                HtmlFile = open("/tmp/graph.html", 'r', encoding='utf-8')
+                source_code = HtmlFile.read() 
+#                 print(source_code)
+                components.html(source_code,height = 550,width=650)
+#                 components.html(draw_graph(npwp),height = 550,width=650)
             with c2:
                 glist = gen_list(npwp)
                 blue = glist[0]
